@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>In Loving Memory of Hugo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Karla:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#faf6f1;
+    --paper-2:#f3ece3;
+    --ink:#2e2723;
+    --ink-soft:#6d625a;
+    --blossom:#c76b7e;
+    --blossom-soft:#ecd3d6;
+    --tan:#b5824f;
+    --line:#e4d9cd;
+    --serif:"Cormorant Garamond", Georgia, serif;
+    --sans:"Karla", system-ui, sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased}
+  img{display:block;max-width:100%}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;min-height:100svh;display:grid;place-items:end center;overflow:hidden;color:#fff;text-align:center}
+  .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,20,18,0) 35%,rgba(30,20,18,.25) 60%,rgba(30,20,18,.78) 100%)}
+  .hero-text{position:relative;z-index:1;padding:0 24px 12vh}
+  .eyebrow{font-family:var(--sans);font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;opacity:.9}
+  .hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(4.5rem,16vw,9rem);line-height:.95;margin:.2em 0 .15em;letter-spacing:.01em}
+  .dates{font-family:var(--serif);font-style:italic;font-size:clamp(1.15rem,3.6vw,1.5rem);opacity:.95}
+  @media (max-aspect-ratio:4/5){
+    .hero{display:block;min-height:0;background:#2a201c}
+    .hero img{position:relative;height:auto;aspect-ratio:3/4}
+    .hero::after{display:none}
+    .hero-text{padding:34px 24px 48px}
+    .hero h1{font-size:clamp(4rem,20vw,6rem)}
+  }
+  .scroll-cue{display:inline-block;margin-top:2.2rem;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:#fff;text-decoration:none;opacity:.8;border-bottom:1px solid rgba(255,255,255,.5);padding-bottom:3px}
+
+  /* ---------- Sections ---------- */
+  section{padding:88px 24px}
+  .wrap{max-width:680px;margin:0 auto}
+  .wide{max-width:1180px;margin:0 auto}
+  h2{font-family:var(--serif);font-weight:500;font-size:clamp(2.1rem,6vw,2.9rem);line-height:1.1;text-align:center;margin-bottom:.4em}
+  .rule{width:44px;height:1px;background:var(--blossom);margin:0 auto 40px;border:0}
+
+  .story p{font-family:var(--serif);font-size:1.32rem;line-height:1.65;margin-bottom:1.1em;color:#3a312c}
+  .story p:first-of-type::first-letter{font-size:3.6em;float:left;line-height:.85;padding:.06em .1em 0 0;color:var(--blossom)}
+
+  .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:48px}
+  .fact{background:var(--paper);padding:20px 18px;text-align:center}
+  .fact dt{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px}
+  .fact dd{font-family:var(--serif);font-size:1.25rem;line-height:1.3}
+
+  blockquote{max-width:620px;margin:0 auto;text-align:center;font-family:var(--serif);font-style:italic;font-size:clamp(1.5rem,4.4vw,2rem);line-height:1.4;color:#3a312c}
+  blockquote cite{display:block;margin-top:18px;font-family:var(--sans);font-style:normal;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)}
+  .quote-band{background:var(--paper-2)}
+
+  /* ---------- Album ---------- */
+  .chapters{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:40px}
+  .chapters button{font:inherit;font-size:.85rem;background:none;border:1px solid var(--line);color:var(--ink-soft);padding:7px 16px;border-radius:999px;cursor:pointer;transition:all .2s}
+  .chapters button:hover{border-color:var(--blossom);color:var(--ink)}
+  .chapters button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+
+  .album{columns:3 300px;column-gap:14px}
+  .album figure{break-inside:avoid;margin:0 0 14px;cursor:zoom-in;position:relative;overflow:hidden;background:var(--paper-2)}
+  .album figure.hide{display:none}
+  .album img{width:100%;height:auto;transition:transform .6s ease}
+  .album figure:hover img{transform:scale(1.03)}
+  .album figcaption{position:absolute;left:0;right:0;bottom:0;padding:28px 14px 11px;font-family:var(--serif);font-style:italic;font-size:1.05rem;color:#fff;background:linear-gradient(transparent,rgba(20,14,12,.65));opacity:0;transition:opacity .3s}
+  .album figure:hover figcaption{opacity:1}
+  @media (hover:none){.album figcaption{opacity:1}}
+
+  /* ---------- Lightbox ---------- */
+  .lb{position:fixed;inset:0;background:rgba(18,13,11,.95);display:none;z-index:50;flex-direction:column;align-items:center;justify-content:center;padding:20px}
+  .lb.open{display:flex}
+  .lb img{max-width:min(94vw,1100px);max-height:80svh;object-fit:contain;box-shadow:0 10px 40px rgba(0,0,0,.4)}
+  .lb p{color:#eee3da;font-family:var(--serif);font-style:italic;font-size:1.2rem;margin-top:16px;text-align:center;min-height:1.6em}
+  .lb .count{font-family:var(--sans);font-style:normal;font-size:.75rem;letter-spacing:.15em;color:#a99c91;margin-top:4px}
+  .lb button{position:absolute;background:none;border:0;color:#fff;font-size:2.2rem;cursor:pointer;padding:14px;opacity:.75;line-height:1}
+  .lb button:hover{opacity:1}
+  .lb .close{top:8px;right:12px;font-size:1.8rem}
+  .lb .prev{left:6px;top:50%;transform:translateY(-50%)}
+  .lb .next{right:6px;top:50%;transform:translateY(-50%)}
+
+  /* ---------- Share / footer ---------- */
+  .share{text-align:center}
+  .share img{width:180px;height:180px;margin:0 auto 18px;background:#fff;padding:12px;border:1px solid var(--line)}
+  .share p{color:var(--ink-soft);font-size:.95rem}
+  footer{text-align:center;padding:56px 24px 64px;border-top:1px solid var(--line)}
+  footer .paw{font-size:1.4rem;color:var(--blossom);letter-spacing:.4em}
+  footer p{font-family:var(--serif);font-style:italic;font-size:1.25rem;margin-top:10px}
+  footer small{display:block;margin-top:6px;color:var(--ink-soft);font-size:.8rem;letter-spacing:.08em}
+
+  .fade{opacity:0;transform:translateY(18px);transition:opacity .9s ease,transform .9s ease}
+  .fade.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.fade{opacity:1;transform:none}.album img{transition:none}}
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <img src="photos/hugo-03.jpg" alt="Hugo looking into the camera beneath a tree full of pink blossoms">
+  <div class="hero-text">
+    <div class="eyebrow">In loving memory</div>
+    <h1>Hugo</h1>
+    <!-- EDIT: replace with Hugo's dates -->
+    <div class="dates">[Month Year] &mdash; [Month] 2026</div>
+    <a class="scroll-cue" href="#story">His story</a>
+  </div>
+</header>
+
+<!-- ============ STORY ============ -->
+<section id="story">
+  <div class="wrap fade">
+    <h2>A Very Good Boy</h2>
+    <hr class="rule">
+    <div class="story">
+      <!-- EDIT: rewrite these paragraphs in your own words -->
+      <p>Hugo came into our lives in [year], a German Shepherd with enormous ears and an even bigger heart. From the very first day, he made it clear that wherever we went, he was coming too.</p>
+      <p>He loved the simple things most: chasing his spiky ball across the field, a long walk through the woods, a nap in the grass by the lacrosse nets, and the first snow of winter, which he greeted like an old friend. He never met a tennis court he didn't want to patrol, or a dog at the park he didn't want to run with.</p>
+      <p>Hugo was curious, gentle, and endlessly patient, the kind of dog who would sit proudly for a photo under the spring blossoms, tongue out, as if he knew exactly how handsome he was. [Add a favorite memory, habit, or funny story here.]</p>
+      <p>He is deeply missed, and he will always be part of our family. Thank you for every walk, every game, and every quiet moment, Hugo.</p>
+    </div>
+
+    <!-- EDIT: change or remove any of these -->
+    <dl class="facts">
+      <div class="fact"><dt>Breed</dt><dd>German Shepherd</dd></div>
+      <div class="fact"><dt>Favorite toy</dt><dd>His spiky ball</dd></div>
+      <div class="fact"><dt>Favorite place</dt><dd>[The park]</dd></div>
+      <div class="fact"><dt>Best at</dt><dd>Sitting pretty for photos</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ============ QUOTE ============ -->
+<section class="quote-band">
+  <!-- EDIT: use a quote or a few words of your own -->
+  <blockquote class="fade">
+    &ldquo;Until one has loved an animal, a part of one's soul remains unawakened.&rdquo;
+    <cite>Anatole France</cite>
+  </blockquote>
+</section>
+
+<!-- ============ ALBUM ============ -->
+<section id="album">
+  <div class="wide">
+    <h2 class="fade">Moments with Hugo</h2>
+    <hr class="rule">
+    <div class="chapters" role="group" aria-label="Filter photos">
+      <button aria-pressed="true" data-f="all">All</button>
+      <button aria-pressed="false" data-f="spring">Spring blossoms</button>
+      <button aria-pressed="false" data-f="play">Playtime</button>
+      <button aria-pressed="false" data-f="friends">Friends</button>
+      <button aria-pressed="false" data-f="walks">Walks</button>
+      <button aria-pressed="false" data-f="winter">Winter</button>
+    </div>
+
+    <!-- EDIT: change any caption; data-c sets which filter a photo belongs to -->
+    <div class="album" id="album-grid">
+      <figure data-c="spring"><img loading="lazy" src="photos/hugo-01.jpg" alt=""><figcaption>Proud in his &ldquo;In Training&rdquo; leash</figcaption></figure>
+      <figure data-c="spring"><img loading="lazy" src="photos/hugo-02.jpg" alt=""><figcaption>That noble profile</figcaption></figure>
+      <figure data-c="spring"><img loading="lazy" src="photos/hugo-04.jpg" alt=""><figcaption>Spring evening, sitting pretty</figcaption></figure>
+      <figure data-c="play"><img loading="lazy" src="photos/hugo-05.jpg" alt=""><figcaption>Ball guarded, ears up</figcaption></figure>
+      <figure data-c="walks"><img loading="lazy" src="photos/hugo-06.jpg" alt=""><figcaption>Resting in the garden</figcaption></figure>
+      <figure data-c="play"><img loading="lazy" src="photos/hugo-07.jpg" alt=""><figcaption>Goalkeeper Hugo</figcaption></figure>
+      <figure data-c="play"><img loading="lazy" src="photos/hugo-08.jpg" alt=""><figcaption>Taking a break in the net</figcaption></figure>
+      <figure data-c="walks"><img loading="lazy" src="photos/hugo-09.jpg" alt=""><figcaption>Summer hat, summer smile</figcaption></figure>
+      <figure data-c="walks"><img loading="lazy" src="photos/hugo-10.jpg" alt=""><figcaption>Looking dapper on the trail</figcaption></figure>
+      <figure data-c="walks"><img loading="lazy" src="photos/hugo-11.jpg" alt=""><figcaption>A happy summer afternoon</figcaption></figure>
+      <figure data-c="play"><img loading="lazy" src="photos/hugo-12.jpg" alt=""><figcaption>Waiting for the next throw</figcaption></figure>
+      <figure data-c="play"><img loading="lazy" src="photos/hugo-13.jpg" alt=""><figcaption>His favorite orange ball</figcaption></figure>
+      <figure data-c="walks"><img loading="lazy" src="photos/hugo-14.jpg" alt=""><figcaption>Keeping watch over the courts</figcaption></figure>
+      <figure data-c="walks"><img loading="lazy" src="photos/hugo-15.jpg" alt=""><figcaption>Exploring the playground</figcaption></figure>
+      <figure data-c="friends"><img loading="lazy" src="photos/hugo-16.jpg" alt=""><figcaption>Running with the pack</figcaption></figure>
+      <figure data-c="friends"><img loading="lazy" src="photos/hugo-17.jpg" alt=""><figcaption>Best buddies on the field</figcaption></figure>
+      <figure data-c="walks"><img loading="lazy" src="photos/hugo-18.jpg" alt=""><figcaption>Always ready for adventure</figcaption></figure>
+      <figure data-c="winter"><img loading="lazy" src="photos/hugo-19.jpg" alt=""><figcaption>His name, written in the snow</figcaption></figure>
+      <figure data-c="winter"><img loading="lazy" src="photos/hugo-20.jpg" alt=""><figcaption>Snowy nose, pink ball</figcaption></figure>
+      <figure data-c="spring"><img loading="lazy" src="photos/hugo-03.jpg" alt=""><figcaption>Under the blossoms</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SHARE ============ -->
+<section class="share quote-band" id="share">
+  <div class="wrap fade">
+    <h2>Share Hugo's Page</h2>
+    <hr class="rule">
+    <img src="hugo-qr.png" alt="QR code linking to this page">
+    <p>Scan to visit and remember Hugo.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="paw">&#9679; &#9679; &#9679;</div>
+  <p>Forever loved, forever our good boy.</p>
+  <!-- EDIT: your family name -->
+  <small>With love, [Your name / family]</small>
+</footer>
+
+<!-- ============ LIGHTBOX ============ -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="close" aria-label="Close">&times;</button>
+  <button class="prev" aria-label="Previous photo">&#8249;</button>
+  <img id="lb-img" alt="">
+  <p id="lb-cap"></p>
+  <div class="count" id="lb-count"></div>
+  <button class="next" aria-label="Next photo">&#8250;</button>
+</div>
+
+<script>
+(function(){
+  // fade-in on scroll
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.15}) : null;
+  document.querySelectorAll('.fade').forEach(function(el){ io ? io.observe(el) : el.classList.add('in'); });
+
+  // captions double as alt text
+  var figs = Array.prototype.slice.call(document.querySelectorAll('#album-grid figure'));
+  figs.forEach(function(f){ f.querySelector('img').alt = f.querySelector('figcaption').textContent; });
+
+  // filters
+  var btns = document.querySelectorAll('.chapters button');
+  btns.forEach(function(b){
+    b.addEventListener('click', function(){
+      btns.forEach(function(x){ x.setAttribute('aria-pressed', x===b ? 'true':'false'); });
+      var f = b.dataset.f;
+      figs.forEach(function(fig){ fig.classList.toggle('hide', f!=='all' && fig.dataset.c!==f); });
+    });
+  });
+
+  // lightbox
+  var lb = document.getElementById('lb'), img = document.getElementById('lb-img'),
+      cap = document.getElementById('lb-cap'), cnt = document.getElementById('lb-count'),
+      list = [], idx = 0;
+  function show(i){
+    idx = (i + list.length) % list.length;
+    var f = list[idx];
+    img.src = f.querySelector('img').src;
+    img.alt = f.querySelector('img').alt;
+    cap.textContent = f.querySelector('figcaption').textContent;
+    cnt.textContent = (idx+1) + ' / ' + list.length;
+  }
+  function open(f){
+    list = figs.filter(function(x){ return !x.classList.contains('hide'); });
+    lb.classList.add('open'); document.body.style.overflow='hidden';
+    show(list.indexOf(f));
+  }
+  function close(){ lb.classList.remove('open'); document.body.style.overflow=''; }
+  figs.forEach(function(f){ f.addEventListener('click', function(){ open(f); }); });
+  lb.querySelector('.close').addEventListener('click', close);
+  lb.querySelector('.prev').addEventListener('click', function(e){ e.stopPropagation(); show(idx-1); });
+  lb.querySelector('.next').addEventListener('click', function(e){ e.stopPropagation(); show(idx+1); });
+  lb.addEventListener('click', function(e){ if(e.target===lb) close(); });
+  document.addEventListener('keydown', function(e){
+    if(!lb.classList.contains('open')) return;
+    if(e.key==='Escape') close();
+    if(e.key==='ArrowLeft') show(idx-1);
+    if(e.key==='ArrowRight') show(idx+1);
+  });
+  var sx = null;
+  lb.addEventListener('touchstart', function(e){ sx = e.touches[0].clientX; }, {passive:true});
+  lb.addEventListener('touchend', function(e){
+    if(sx===null) return;
+    var dx = e.changedTouches[0].clientX - sx;
+    if(Math.abs(dx) > 45) show(idx + (dx < 0 ? 1 : -1));
+    sx = null;
+  });
+})();
+</script>
+</body>
+</html>
